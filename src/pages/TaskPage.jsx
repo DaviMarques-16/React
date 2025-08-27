@@ -7,11 +7,23 @@ function TaskPage() {
     const description = searchParams.get("description") 
 
     return (
-        <div 
+        <div
         className="h-screen w-screen bg-slate-500 p-6">
-            <h1>{title}</h1>
-            <p>{description}</p>
+
+            <div className='w-[500px] space-y-4'>
+
+            <h1 className='text-3xl text-slate-100 font-bold text-center'>
+                Detalhes da Tarefa
+            </h1>
+
+            <div className="bg-slate-400 p-4 rounded-md">
+                <h2 className="text-xl font-bold text-slate-600">{title}</h2>
+                <p className="text-slate-600">{description}</p>
+            </div>
+
+            </div>
         </div>
+        
 
     )
 
