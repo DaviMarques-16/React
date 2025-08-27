@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AddTask from './components/AddTask';
 import Tasks from './components/Tasks';
+import { v4 } from 'uuid';
 
 //Estado - State
 function App() {
@@ -48,13 +49,13 @@ function onDeleteTaskClick(taskId) {
 //Esta função adiciona uma nova tarefa
 function onAddTaskSubmit (title, description) {
   const newTask = {
-    id: tasks.length + 1,
+    id: v4(), //Gera um ID único para a tarefa
     title: title,
     description: description,
     isCompleted: false
   };
 
-  setTasks([...tasks, newTask]) //Adiciona a nova tarefa no array de tarefas
+  setTasks([...tasks, newTask]) //Adiciona a nova tarea no array de tarefas
 }
 
   return (
