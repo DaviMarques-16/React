@@ -54,7 +54,7 @@ function onAddTaskSubmit (title, description) {
     isCompleted: false
   };
 
-  setTasks([...tasks, newTask])
+  setTasks([...tasks, newTask]) //Adiciona a nova tarefa no array de tarefas
 }
 
   return (
