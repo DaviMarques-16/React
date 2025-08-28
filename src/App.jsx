@@ -2,25 +2,47 @@ import { useState } from 'react';
 import AddTask from './components/AddTask';
 import Tasks from './components/Tasks';
 import { v4 } from 'uuid';
+import { useEffect } from 'react';
+import Title from './components/Title'
 
 //Estado - State
 function App() {
-  const [tasks, setTasks] = useState([{
-    id: 1,
-    title: 'Estudar React',
-    description: 'Tornar-se proficiente em React',
-    isCompleted: false
-  }, {
-    id: 2,
-    title: 'Estudar Node.js',
-    description: 'Aprender a construir APIs com Node.js', 
-    isCompleted: false
-  }, {
-    id: 3,
-    title: 'Estudar TypeScript',
-    description: 'Adicionar tipagem ao JavaScript com TypeScript',
-    isCompleted: false
-  }, ])
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem('tasks')) || []
+  );
+  
+//Lista fazia sendo o primeiro acesso
+
+
+  useEffect(() => {
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
+  
+  //A função será executada quando tasks for alterado.
+
+//   useEffect(() => {
+//     const fetchTasks = async () => {
+
+//   //Chamar a API
+//       const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=10', {
+//         method: 'GET'
+//       });
+
+//       //Pegar os daddos que ela retorna
+//       const data = await response.json() //converter response pra json
+
+//       //Armazenar/Persistir os dados no state
+//       setTasks(data)
+
+//     }
+
+//     fetchTasks()
+// // SE QUISER, chamar a api e pegar os dados.
+//   }, [])
+
+
+  //Quando o segundo parâmetro é uma lista vazia,
+  //A função só é executada uma vez: no acesso
 
 
 //Esta função atualiza o estado das tarefas
@@ -63,9 +85,11 @@ function onAddTaskSubmit (title, description) {
 
         <div className='w-[500px] space-y-4'>
 
-          <h1 className='text-3xl text-slate-100 font-bold text-center'>
+        
+          <Title>
             Gerenciador de Tarefas
-          </h1>
+          </Title>
+          
 
           <AddTask
             onAddTaskSubmit={onAddTaskSubmit}
